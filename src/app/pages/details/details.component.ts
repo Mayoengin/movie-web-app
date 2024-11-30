@@ -73,7 +73,7 @@ export class DetailsComponent implements OnInit {
       this.movieType === 'movie'
         ? `https://api.themoviedb.org/3/movie/${id}/videos`
         : `https://api.themoviedb.org/3/tv/${id}/videos`;
-
+  
     fetch(apiUrl, {
       headers: {
         Authorization: `Bearer ${environment.token}`,
@@ -98,13 +98,14 @@ export class DetailsComponent implements OnInit {
             console.warn('No YouTube trailer found.');
           }
         } else {
-          console.warn('Invalid or empty video results from API.');
+          console.warn('Invalid or empty video results from API.', data);
         }
       })
       .catch((error) => {
-        console.error('Error fetching trailer:', error);
+        console.error('Error fetching trailer:', error.message);
       });
   }
+  
 
   openTrailerPopup(): void {
     this.showTrailer = true;

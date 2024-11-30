@@ -1,0 +1,130 @@
+/* General styles */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.home-content {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* Title styles */
+.mini-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 20px 0;
+  color: #222;
+}
+
+/* Search section */
+.search-section {
+  margin: 20px 0;
+  padding: 10px;
+}
+
+/* Movie card grid */
+.movie-card-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 270px); /* Fix card width */
+  gap: 30px;
+  justify-content: center; /* Center align the cards */
+  margin-top: 20px;
+}
+
+/* Movie card styles */
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 470px;
+  width: 270px; /* Fixed width to match grid */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Movie card content */
+.movie-card img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.movie-card .title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 15px 0;
+}
+
+.movie-card .rating {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+/* Movie card grid */
+.movie-card-section {
+display: grid;
+grid-template-columns: repeat(auto-fill, 270px); /* Fix card width */
+gap: 30px;
+justify-content: center; /* Center align the cards */
+justify-items: center;
+}
+
+  .mini-title {
+      font-size: 1.2rem;
+  }
+  .title {
+      font-size: 2rem;
+      
+  }
+}
+@media (max-width: 480px) {
+.movie-card {
+    font-size: 0.9rem;
+    height: auto; /* Allow dynamic height */
+    width: 300px; /* Adjust width */
+    padding: 10px; /* Add padding for spacing */
+    display: flex;
+    flex-direction: column; /* Ensure proper stacking */
+    justify-content: flex-start; /* Align content to the top */
+}
+.movie-card img {
+    height: 60%; /* Adjust image height */
+}
+.movie-card .title {
+    font-size: 1rem; /* Adjust font size */
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px; /* Add margin for spacing */
+    display: block; /* Ensure visibility */
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Keep text on a single line */
+}
+}
+

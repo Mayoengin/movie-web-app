@@ -1,0 +1,18 @@
+<div class="home-container">
+    <div class="home-content">
+      <!-- Segmented Control -->
+      <app-segmented-control [config]="segment"></app-segmented-control>
+  
+      <!-- Search Input -->
+      <app-input (search)="onSearch($event)"></app-input>
+  
+      <!-- Movie Cards Section -->
+      <div class="movie-card-section">
+        <!-- Use filteredMovies to display the search results -->
+        <div *ngFor="let item of filteredMovies" class="movie-card" (click)="navigateToDetails(item)">
+          <app-movies [config]="item"></app-movies>
+        </div>
+      </div>
+    </div>
+  </div>
+  

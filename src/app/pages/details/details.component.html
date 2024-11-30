@@ -1,0 +1,89 @@
+<div class="movie-details-container">
+  <!-- Hero Section -->
+  <div class="hero-section" [ngStyle]="{ 'background-image': 'url(' + additionalImg + ')' }">
+    <div class="overlay">
+      <!-- Render details-container inside the overlay for mobile -->
+      <div *ngIf="isMobileView" class="details-container">
+        <p><strong>Type:</strong><br /> {{ movieType }}</p>
+        <p class="overview-text" (click)="showOverviewPopup()" [class.truncated]="isMobileView">
+          <strong>Overview:</strong><br /> {{ overview }}
+        </p>
+        <p><strong>Release Date:</strong><br /> {{ releaseDate }}</p>
+        <p *ngIf="runtime"><strong>Runtime:</strong><br /> {{ runtime }}</p>
+        <p *ngIf="genres.length"><strong>Genres:</strong><br /> {{ genres.join(', ') }}</p>
+
+        <!-- TV-specific details -->
+        <div *ngIf="movieType === 'tv'">
+          <p><strong>First Air Date:</strong><br /> {{ firstAirDate }}</p>
+          <p><strong>Last Air Date:</strong><br /> {{ lastAirDate }}</p>
+          <p><strong>Number of Seasons:</strong><br /> {{ numberOfSeasons }}</p>
+          <p><strong>Number of Episodes:</strong><br /> {{ numberOfEpisodes }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trailer Popup -->
+  <div class="trailer-popup" *ngIf="showTrailer">
+    <div class="trailer-popup-content">
+      <button class="close-button" (click)="closeTrailerPopup()">✖</button>
+      <iframe
+        [src]="trailerUrl"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- Overview Popup -->
+  <div *ngIf="isOverviewPopupVisible" class="overview-popup">
+    <div class="popup-content">
+      <button class="close-button" (click)="hideOverviewPopup()">✖</button>
+      <p>{{ overview }}</p>
+    </div>
+  </div>
+
+  <!-- Movie Info Card -->
+  <div class="movie-info-card">
+    <div class="breadcrumb">
+      <a href="/home">MayoMovies&nbsp;</a> /
+      <a [routerLink]="['/movies']" *ngIf="movieType === 'movie'">&nbsp;Movies</a>
+      <a [routerLink]="['/tv-shows']" *ngIf="movieType === 'tv'">&nbsp;TV Shows</a>
+    </div>
+    <h1 class="movie-title">
+      {{ movieName }}
+      <button *ngIf="trailerUrl" class="trailer-button" (click)="openTrailerPopup()">
+        <span class="trailer-icon">
+          <i class="bi bi-camera-video-fill"></i>
+        </span>
+        Trailer
+      </button>
+    </h1>
+  </div>
+
+  <div *ngIf="!isMobileView" class="details-section">
+    <!-- Additional Image -->
+    <div class="additional-image">
+      <img [src]="movieImg" alt="{{ movieName }} Additional Image" />
+    </div>
+
+    <!-- Movie Details -->
+    <div class="details-container">
+      <p><strong>Type:</strong><br /> {{ movieType }}</p>
+      <p><strong>Overview:</strong><br /> {{ overview }}</p>
+      <p><strong>Release Date:</strong><br /> {{ releaseDate }}</p>
+      <p *ngIf="runtime"><strong>Runtime:</strong><br /> {{ runtime }}</p>
+      <p *ngIf="genres.length"><strong>Genres:</strong><br /> {{ genres.join(', ') }}</p>
+
+      <!-- TV-specific details -->
+      <div *ngIf="movieType === 'tv'">
+        <p><strong>First Air Date:</strong><br /> {{ firstAirDate }}</p>
+        <p><strong>Last Air Date:</strong><br /> {{ lastAirDate }}</p>
+        <p><strong>Number of Seasons:</strong><br /> {{ numberOfSeasons }}</p>
+        <p><strong>Number of Episodes:</strong><br /> {{ numberOfEpisodes }}</p>
+      </div>
+    </div>
+  </div>
+</div>

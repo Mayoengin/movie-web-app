@@ -1,0 +1,120 @@
+@import "../../../themes/themes.scss";
+
+.nav-bar-container {
+    position: fixed; /* Makes the navbar stick to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    z-index: 1000; /* Ensures it stays on top of other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: rgba(18, 24, 41, 0.93); /* Fixed SCSS rgba function */
+
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        margin: auto; /* Centers the nav content */
+    }
+
+    .nav-bar-logo {
+        width: 80px;
+        height: 80px;
+        margin-left: 20px;
+        background-image: url('/assets/logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .nav-bar-links {
+        ul {
+            display: flex;
+            column-gap: 50px;
+            align-items: center;
+        }
+
+        li {
+            list-style: none;
+            color: $app-textgray;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            cursor: pointer;
+        }
+
+        i {
+            color: $app-textgray;
+        }
+
+        .active-item {
+            color: $app-primary;
+
+            i {
+                color: $app-primary;
+            }
+        }
+    }
+    .main-content {
+        margin-top: 120px; /* Matches the navbar's fixed height */
+
+        padding: 20px; /* Optional: Add padding for spacing inside content */
+        /* Adjust based on navbar height (e.g., 100px height + 20px padding) */
+      }
+      
+
+    @media screen and (max-width: 768px) { /* For mobile view */
+        position: relative;
+        .nav-bar-links {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Initially hidden off the screen */
+            height: 100%;
+            width: 250px;
+            background-color: rgba(18, 24, 41, 0.95); /* Fixed SCSS rgba function */
+            flex-direction: column;
+            padding-top: 20px;
+            transition: right 0.3s ease-in-out; /* Smooth slide effect */
+
+            ul {
+                margin-top: 100px;
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 20px;
+                row-gap: 20px;
+            }
+        }
+
+        .nav-bar-links.open { /* When menu is toggled open */
+            right: 0;
+            
+        }
+
+        .menu-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: $app-textgray; // Replace with a valid color if the variable isn't defined
+            z-index: 1100; // Ensure it stays above other elements
+        }
+        
+        .menu-toggle span {
+            transition: opacity 0.3s ease; /* Optional: Smooth icon transitions */
+        }
+        
+    }
+
+    @media screen and (min-width: 769px) { /* For desktop view */
+        .menu-toggle {
+            display: none; /* Hide toggle button on desktop */
+        }
+    }
+}

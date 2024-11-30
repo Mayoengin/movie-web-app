@@ -1,0 +1,10 @@
+@if (config) {
+    <div class="movies-card-container">
+        <div [style.background-image]="'url('+config.img+')'" class="image-container">
+            <app-rate-chip *ngIf="config.rateL > 0" [rate]="config.rateL" [placeDesimal]="1"></app-rate-chip>
+
+        </div>
+        <p class="movie-title">{{config.movieName}}</p>
+    </div>
+}
+

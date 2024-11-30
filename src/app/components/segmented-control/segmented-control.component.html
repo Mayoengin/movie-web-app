@@ -1,0 +1,10 @@
+<div class="segmented-control-component" *ngIf="config && config.length > 0">
+    <div
+      *ngFor="let segment of config"
+      class="segment"
+      [ngClass]="{ 'active-item': segment.active }"
+      (click)="selectItem(segment)">
+      {{ segment.name }}
+    </div>
+  </div>
+  

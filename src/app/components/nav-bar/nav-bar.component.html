@@ -1,0 +1,25 @@
+<div class="nav-bar-container">
+    <div class="nav-content">
+        <div class="nav-bar-logo" [routerLink]="'/'" style="cursor: pointer;">
+            <!-- Add your logo here -->
+        </div>
+        <!-- Mobile toggle button -->
+        <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle navigation" [attr.aria-expanded]="menuOpen">
+            <span *ngIf="!menuOpen">☰</span> <!-- Hamburger icon -->
+            <span *ngIf="menuOpen">✖</span>  <!-- Close icon -->
+        </button>
+        <div class="nav-bar-links" [class.open]="menuOpen">
+            <ul>
+                <li 
+                  *ngFor="let item of navitems" 
+                  [routerLink]="item.path" 
+                  routerLinkActive="active-item" 
+                  (click)="selectItem(item)">
+                    {{item.name}}
+                    <i *ngIf="item.icon" class="{{item.icon}}"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+  

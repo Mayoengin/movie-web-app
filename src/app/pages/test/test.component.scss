@@ -1,0 +1,6 @@
+.movie-section{
+    display: flex;
+    .movie-card{
+        width: calc(100% / 2);
+    }
+}

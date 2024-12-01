@@ -1,4 +1,12 @@
-import { Component, ElementRef, EventEmitter, Output, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  AfterViewInit,
+  HostListener,
+  Renderer2
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavIntemConfig } from '../../interfaces/ui-configs/nav-item-config-interface';
@@ -20,7 +28,7 @@ export class NavBarComponent implements AfterViewInit {
     { name: 'TV Shows', path: 'tv-shows', active: false }
   ];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
@@ -28,10 +36,19 @@ export class NavBarComponent implements AfterViewInit {
 
   selectItem(nav: NavIntemConfig) {
     this.navitems.map((item: NavIntemConfig) => (item.active = nav.name === item.name));
+    this.menuOpen = false; // Close the menu when an item is selected
   }
 
   ngAfterViewInit() {
     const height = this.elementRef.nativeElement.offsetHeight; // Get the height of the navbar
     this.navbarHeight.emit(height); // Emit the height to the parent component
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside && this.menuOpen) {
+      this.menuOpen = false; // Close the menu when clicking outside of it
+    }
   }
 }

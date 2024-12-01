@@ -59,6 +59,13 @@
   z-index: 100;
   transform: translateY(100%);
 }
+.toggle-overview {
+  color: #007bff; /* Bootstrap link color */
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 5px;
+}
 
 .breadcrumb {
   font-size: 0.9rem;

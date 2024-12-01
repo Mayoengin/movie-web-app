@@ -41,6 +41,8 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0); // Scroll to top on page load
+    
     this.route.queryParams.subscribe((params) => {
       this.movieId = +params['id'];
       if (!this.movieId || isNaN(this.movieId)) {

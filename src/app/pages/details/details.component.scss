@@ -1,4 +1,5 @@
 .hero-section {
+  
   position: absolute;
   width: 80%;
   height: 500px;
@@ -83,17 +84,22 @@
 }
 
 .details-section {
-  position: relative;
-  display: flex;
+  position: relative; /* Keep relative positioning */
+  display: flex; 
   justify-content: space-between;
   align-items: flex-start;
-  margin: 40px auto;
-  width: 80%;
+  margin: 400px auto; /* Add sufficient top and bottom margins */
+  width: 80%; /* Center alignment with proper width */
+  z-index: 10; /* Ensure it stays above other elements */
+  height: auto;
+  margin-bottom: 0;
+  
 }
+
 
 .additional-image {
   width: 50%;
-  height: 800px;
+  height: auto;
   border-radius: 1.5rem;
   overflow: hidden;
 }
